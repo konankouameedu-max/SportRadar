@@ -7,7 +7,8 @@ Nouvelle version complète du site d'origine (même identité visuelle, mêmes p
 - un formulaire d'inscription dynamique selon le type de compte (particulier / coach / entreprise) avec validation e-mail, SIRET/SIREN, téléphone et mots de passe ;
 - des CGV, une case d'acceptation obligatoire avant chaque réservation et un récapitulatif de réservation ;
 - une sécurité appliquée dans la base de données (Row Level Security Supabase) ;
-- des tests unitaires, de sécurité et de bout en bout.
+- une **application mobile installable (PWA)** sur Android et iPhone : icône, plein écran, page hors ligne ;
+- des tests unitaires, de sécurité, PWA et de bout en bout.
 
 > Aucun paiement en ligne n'existe sur le site d'origine : les réservations sont gratuites et aucune donnée bancaire n'est collectée. Voir [docs/TECHNIQUE.md](docs/TECHNIQUE.md#paiement-en-ligne) pour ajouter Stripe si nécessaire.
 
@@ -98,6 +99,15 @@ Schéma et règles de sécurité détaillés : [docs/TECHNIQUE.md](docs/TECHNIQU
 - **Unitaires** (`npm test`) : validation e-mail, SIRET/SIREN (clé de Luhn, cas La Poste), mots de passe, champs par type de compte, conversion de fuseau horaire.
 - **Sécurité** (`npm run test:security`) : 18 contrôles — accès anonyme, isolation des données, élévation de privilèges, réservation sans CGV, **réservations simultanées sans surréservation**, double réservation…
 - **Bout en bout** (`npm run test:e2e [url]`) : 21 scénarios — inscription des 3 types de compte, messages d'erreur, publication / modification / suppression d'activité, créneaux récurrents, réservation avec CGV, créneau complet, annulation, planning, espace entreprise, contrôle d'accès, admin, affichage mobile / tablette / ordinateur.
+
+## Application mobile (PWA)
+
+Le site s'installe comme une application, sans store :
+- **Android (Chrome)** : bouton « Installer l'application » (pied de page ou page `/application`), ou menu ⋮ → *Installer l'application*.
+- **iPhone (Safari)** : *Partager* → *Sur l'écran d'accueil*.
+
+Fichiers concernés : `src/app/manifest.ts` (manifeste), `public/sw.js` (service worker : réseau d'abord pour les pages, cache pour les fichiers statiques, jamais de cache pour l'API Supabase), `public/offline.html` (page hors ligne), `public/icons/` et `src/app/apple-icon.png` (icônes), `src/components/PwaProvider.tsx` (enregistrement + invite d'installation).
+Après une modification de `sw.js`, incrémentez `VERSION` pour forcer la mise à jour des caches. Tests : `npm run test:pwa [url]`.
 
 ## Comptes de démonstration
 

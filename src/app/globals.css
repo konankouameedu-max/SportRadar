@@ -33,4 +33,9 @@
   .legal ul { @apply list-disc pl-6; }
 }
 
+/* Mode application installée (encoches et barres système) */
+header.sticky { padding-top: env(safe-area-inset-top); }
+footer { padding-bottom: env(safe-area-inset-bottom); }
+[aria-label="Consentement aux cookies"] { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
+
 .leaflet-container { font-family: inherit; z-index: 0; }

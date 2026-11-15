@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "node tests/e2e.mjs",
-    "test:security": "node --env-file=.env.local tests/security.mjs"
+    "test:security": "node --env-file=.env.local tests/security.mjs",
+    "test:pwa": "node tests/pwa.mjs"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.2.6",

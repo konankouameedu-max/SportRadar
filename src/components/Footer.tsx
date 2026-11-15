@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Mail, Twitter } from "lucide-react";
 import { Logo } from "./Logo";
+import { InstallAppButton } from "./InstallAppButton";
 
 const quick = [
   ["/", "Accueil"], ["/discover", "Découvrir"], ["/business-info", "Entreprise"],
@@ -8,7 +9,7 @@ const quick = [
 ];
 const legal = [
   ["/cgv", "Conditions générales de vente (CGV)"], ["/confidentialite", "Politique de confidentialité"],
-  ["/mentions-legales", "Mentions légales"], ["/cookies", "Gestion des cookies"],
+  ["/mentions-legales", "Mentions légales"], ["/cookies", "Gestion des cookies"], ["/application", "Application mobile"],
 ];
 
 export function Footer() {
@@ -47,7 +48,10 @@ export function Footer() {
           <h3 className="mb-4 text-lg font-semibold text-white">Contact</h3>
           <p className="text-sm">Une question ? N&apos;hésitez pas à nous contacter !</p>
           <a href="mailto:contact@sportradar.com" className="mt-3 block text-sm text-primary-300 hover:text-primary-200">contact@sportradar.com</a>
-          <Link href="/contact" className="btn-primary mt-4">Nous contacter</Link>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link href="/contact" className="btn-primary">Nous contacter</Link>
+            <InstallAppButton />
+          </div>
         </div>
       </div>
       <div className="container-custom border-t border-neutral-700 py-6 text-center text-sm text-neutral-400">
