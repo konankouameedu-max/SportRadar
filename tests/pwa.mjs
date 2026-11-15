@@ -13,12 +13,12 @@ await page.goto(BASE + "/", { waitUntil: "networkidle" });
 
 const manifestHref = await page.getAttribute('link[rel="manifest"]', "href");
 check("Lien vers le manifeste présent", !!manifestHref);
-const m = await (await page.request.get(new URL(manifestHref, BASE).href)).json();
+const m = await page.evaluate(async (u) => (await fetch(u)).json(), manifestHref);
 check("Manifeste : nom, start_url, display standalone", m.short_name === "SportRadar" && m.start_url && m.display === "standalone");
 check("Manifeste : icônes 192, 512 et maskable", ["192x192", "512x512"].every((s) => m.icons.some((i) => i.sizes === s)) && m.icons.some((i) => i.purpose === "maskable"));
 for (const i of m.icons) {
-  const r = await page.request.get(new URL(i.src, BASE).href);
-  check(`Icône ${i.src} accessible`, r.ok() && r.headers()["content-type"].includes("png"));
+  const r = await page.evaluate(async (u) => { const x = await fetch(u); return { ok: x.ok, type: x.headers.get("content-type") || "" }; }, i.src);
+  check(`Icône ${i.src} accessible`, r.ok && r.type.includes("png"));
 }
 check("Icône iPhone (apple-touch-icon)", (await page.locator('link[rel="apple-touch-icon"]').count()) > 0);
 check("Méta theme-color", (await page.getAttribute('meta[name="theme-color"]', "content")) === "#0369a1");
