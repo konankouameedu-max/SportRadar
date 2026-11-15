@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-neutral-50 font-sans text-neutral-800 antialiased; }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading font-semibold leading-tight; }
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  :focus-visible { @apply outline-none ring-2 ring-primary-300 ring-offset-2; }
+}
+
+@layer components {
+  .container-custom { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-heading text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 md:px-6 md:py-3 md:text-base; }
+  .btn-primary { @apply btn bg-primary-700 text-white hover:bg-primary-800 focus:ring-primary-300; }
+  .btn-outline { @apply btn border-2 border-primary-700 bg-transparent text-primary-700 hover:bg-primary-50 focus:ring-primary-300; }
+  .btn-outline-white { @apply btn border-2 border-white bg-transparent text-white hover:bg-white/10 focus:ring-white; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700 focus:ring-red-300; }
+  .btn-sm { @apply px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-sm; }
+  .card { @apply overflow-hidden rounded-xl bg-white shadow-md transition-shadow duration-300 hover:shadow-lg; }
+  .label { @apply mb-1 block text-sm font-medium text-neutral-700; }
+  .input { @apply w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-neutral-800 placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200; }
+  .input-error { @apply border-red-400 focus:border-red-500 focus:ring-red-200; }
+  .field-error { @apply mt-1 text-sm text-red-600; }
+  .alert-error { @apply rounded-lg border border-red-200 bg-red-50 p-4 text-red-700; }
+  .alert-success { @apply rounded-lg border border-green-200 bg-green-50 p-4 text-green-800; }
+  .alert-info { @apply rounded-lg border border-primary-200 bg-primary-50 p-4 text-primary-800; }
+  .legal h2 { @apply mb-2 mt-8 text-xl md:text-2xl; }
+  .legal p, .legal li { @apply mb-3 leading-relaxed text-neutral-700; }
+  .legal ul { @apply list-disc pl-6; }
+}
+
+.leaflet-container { font-family: inherit; z-index: 0; }
