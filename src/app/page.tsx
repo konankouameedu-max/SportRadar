@@ -20,7 +20,7 @@ export default function HomePage() {
     <>
       <section
         className="relative flex min-h-[520px] items-center bg-neutral-500 bg-cover bg-center md:min-h-[640px]"
-        style={{ backgroundImage: "url(/images/hero-image.png)" }}
+        style={{ backgroundImage: "url(/images/hero-image.webp)" }}
       >
         <div className="absolute inset-0 bg-black/50" aria-hidden />
         <div className="container-custom relative py-20 text-white">
